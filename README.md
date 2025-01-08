@@ -5,7 +5,7 @@ None
 ## Shortcode um_profile_info
 ### Main types
 #### image
-[um_profile_info type="image" meta_key="key_name" width="300" user_id="1234"]title text[/um_profile_info]
+[um_profile_info type="image" meta_key="key_name" width="300" user_id="1234"]title text[/um_profile_info]  Example: meta_key="profile_photo"
 #### video
 [um_profile_info type="video" meta_key="key_name" width="300" user_id="1234"]title text[/um_profile_info]
 #### profile_link
