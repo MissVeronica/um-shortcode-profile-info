@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Ultimate Member - Shortcode Profile Info
  * Description:     Extension to Ultimate Member for displaying User Profile info at non UM pages via a shortcode.
- * Version:         1.0.0
+ * Version:         1.1.0
  * Requires PHP:    7.4
  * Author:          Miss Veronica
  * License:         GPL v2 or later
@@ -20,6 +20,14 @@ if ( ! class_exists( 'UM' ) ) return;
 
 class UM_Shortcode_Profile_info {
 
+    public $wp_users_table = array( 'user_login',
+                                    'user_nicename',
+                                    'user_email',
+                                    'user_url',
+                                    'display_name',
+                                );
+
+
     function __construct() {
 
         add_shortcode( 'um_profile_info', array( $this, 'um_profile_info_shortcode' ), 10, 2 );
@@ -27,19 +35,17 @@ class UM_Shortcode_Profile_info {
 
     public function um_profile_info_shortcode( $atts, $content = '' ) {
 
-        if ( isset( $atts['type'] ) || ! empty( $atts['type'] )) {
+        if ( isset( $atts['type'] ) && ! empty( $atts['type'] )) {
 
             $type = sanitize_text_field( $atts['type'] );
 
             $user_id = apply_filters( 'um_profile_info_shortcode', false, $type );
 
-            if ( empty( $user_id ) ) {
-                $user_id = um_profile_id();
-                if ( empty( $user_id ) && ! isset( $atts['user_id'] )) {
-                    return '';
-                } else {
-                    $user_id = absint( $atts['user_id'] );
-                }
+            if ( empty( $user_id ) && isset( $atts['user_id'] )) {
+                $user_id = absint( $atts['user_id'] );
+                
+            } else {
+                return '';
             }
 
             switch( $type ) {
@@ -66,7 +72,14 @@ class UM_Shortcode_Profile_info {
         $photo_url = UM()->uploader()->get_upload_base_url() . $user_id . "/" . $image_name;
         $width = ( isset( $atts['width'] ) && ! empty( $atts['width'] )) ? sanitize_text_field( $atts['width']  ) : '';
 
-        return '<img src="' . esc_url( $photo_url ) . '" width="' . esc_attr( $width ) . '" alt="Image" title="' . esc_attr( $content ) . '"/>';
+        $atts['meta_key'] = $atts['text_meta_key'];
+
+        $link_text = $this->get_um_meta_value( $user_id, $atts );
+        if ( empty( $link_text )) {
+            $link_text = $content;
+        }
+
+        return '<img src="' . esc_url( $photo_url ) . '" width="' . esc_attr( $width ) . '" alt="Image" title="' . esc_attr( $link_text ) . '"/>';
     }
 
     public function display_profile_video( $user_id, $atts, $content ) {
@@ -93,7 +106,14 @@ class UM_Shortcode_Profile_info {
             return '';
         }
 
-        return '<a href="' . esc_url( $user_profile_url ) . '" title="' . esc_attr( $content ) . '">' . esc_attr( $content ) . '</a>';
+        $atts['meta_key'] = $atts['text_meta_key'];
+
+        $link_text = $this->get_um_meta_value( $user_id, $atts );
+        if ( empty( $link_text )) {
+            $link_text = $content;
+        }
+
+        return '<a href="' . esc_url( $user_profile_url ) . '" title="' . esc_attr( $link_text ) . '">' . esc_attr( $link_text ) . '</a>';
     }
 
     public function display_profile_url( $user_id, $atts, $content ) {
@@ -103,7 +123,14 @@ class UM_Shortcode_Profile_info {
             return '';
         }
 
-        return '<a href="' . esc_url( $url ) . '" title="' . esc_attr( $content ) . '">' . esc_attr( $content ) . '</a>';
+        $atts['meta_key'] = $atts['text_meta_key'];
+
+        $link_text = $this->get_um_meta_value( $user_id, $atts );
+        if ( empty( $link_text )) {
+            $link_text = $content;
+        }
+
+        return '<a href="' . esc_url( $url ) . '" title="' . esc_attr( $link_text ) . '">' . esc_attr( $link_text ) . '</a>';
     }
 
     public function display_profile_meta_value( $user_id, $atts ) {
@@ -129,7 +156,13 @@ class UM_Shortcode_Profile_info {
             return '';
         }
 
-        $meta_value = get_user_meta( $user_id, $meta_key, true );
+        if ( in_array( $meta_key, $this->wp_users_table )) {
+            $user_info = get_userdata( $user_id );
+            $meta_value = $user_info->$meta_key;
+
+        } else {
+            $meta_value = get_user_meta( $user_id, $meta_key, true );
+        }
 
         return $meta_value;
     }
@@ -137,5 +170,4 @@ class UM_Shortcode_Profile_info {
 
 
 new UM_Shortcode_Profile_info();
-
 
