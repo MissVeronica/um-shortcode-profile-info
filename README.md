@@ -5,13 +5,13 @@ None
 ## Shortcode um_profile_info
 ### Main types
 #### image
-[um_profile_info type="image" meta_key="key_name" width="300" user_id="1234"]title text[/um_profile_info]  Example: meta_key="profile_photo"
+[um_profile_info type="image" meta_key="key_name" width="300" user_id="1234" text_meta_key="key_name"]title text[/um_profile_info]  Example: meta_key="profile_photo"
 #### video
 [um_profile_info type="video" meta_key="key_name" width="300" user_id="1234"]title text[/um_profile_info]
 #### profile_link
-[um_profile_info type="profile_link" user_id="1234"]title text[/um_profile_info]
+[um_profile_info type="profile_link" user_id="1234" text_meta_key="key_name"]title text[/um_profile_info]
 #### url
-[um_profile_info type="url" meta_key="key_name" user_id="1234"]title text[/um_profile_info]
+[um_profile_info type="url" meta_key="key_name" user_id="1234" text_meta_key="key_name"]title text[/um_profile_info]
 #### meta_value
 [um_profile_info type="meta_value" meta_key="key_name" user_id="1234"]
 ### User ID
@@ -22,7 +22,9 @@ function um_profile_info_shortcode_userid( $user_id, $type ) {
     // find current user ID value for use in the plugin
     return $user_id;
 }</code>
+###  text_meta_key="key_name"
+Title text for type="image". Link text for  type="profile_link" and type="url". Fallback in all cases the content text ie "title text"
 ## Updates
-None
+1. Version 1.1.0 Addition of: text_meta_key="key_name". Fix for user_id in type="profile_link". WP Users table fields included in meta_key selections.
 ## Installation & Updates
 Download the zip file via the green Code button and install or update as a new WP Plugin to upload, activate the plugin.
