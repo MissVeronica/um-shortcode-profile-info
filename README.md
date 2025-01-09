@@ -23,7 +23,7 @@ function um_profile_info_shortcode_userid( $user_id, $type ) {
     return $user_id;
 }</code>
 ###  text_meta_key="key_name"
-Title text for type="image". Link text for  type="profile_link" and type="url". Fallback in all cases the content text ie "title text"
+Title text for type="image". Link text for  type="profile_link" and type="url". Fallback in all cases the content text ie "title text" in the shortcode examples
 ## Updates
 1. Version 1.1.0 Addition of: text_meta_key="key_name". Fix for user_id in type="profile_link". WP Users table fields included in meta_key selections.
 ## Installation & Updates
