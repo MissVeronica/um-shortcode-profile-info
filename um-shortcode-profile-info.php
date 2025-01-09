@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Ultimate Member - Shortcode Profile Info
  * Description:     Extension to Ultimate Member for displaying User Profile info at non UM pages via a shortcode.
- * Version:         1.1.0
+ * Version:         1.2.0
  * Requires PHP:    7.4
  * Author:          Miss Veronica
  * License:         GPL v2 or later
@@ -39,12 +39,13 @@ class UM_Shortcode_Profile_info {
 
             $type = sanitize_text_field( $atts['type'] );
 
-            $user_id = apply_filters( 'um_profile_info_shortcode', false, $type );
+            $user_id = apply_filters( 'um_profile_info_shortcode', false, $type, $atts );
 
             if ( empty( $user_id ) && isset( $atts['user_id'] )) {
                 $user_id = absint( $atts['user_id'] );
-                
-            } else {
+            }
+
+            if ( empty( $user_id )) {
                 return '';
             }
 
@@ -170,4 +171,7 @@ class UM_Shortcode_Profile_info {
 
 
 new UM_Shortcode_Profile_info();
+
+
+
 
