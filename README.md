@@ -19,7 +19,7 @@ If you can't add the user_id in the shortcode use the filter 'um_profile_info_sh
 #### code example user_id filter
 <code>add_filter( 'um_profile_info_shortcode', 'um_profile_info_shortcode_userid', 10, 2 );
 function um_profile_info_shortcode_userid( $user_id, $type ) {
-    // find current user ID value for use in the plugin
+    // find current user ID value for use by the plugin
     return $user_id;
 }</code>
 ###  text_meta_key="key_name"
