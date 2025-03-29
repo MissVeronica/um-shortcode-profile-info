@@ -23,6 +23,8 @@ Extension to Ultimate Member for displaying User Profile info incl country flags
 [um_profile_info type="email" meta_key="user_email" user_id="" text_meta_key="user_login" icon="fas fa-at"]
 #### file
 [um_profile_info type="file" meta_key="um_pdf_submitted" user_id="" text_meta_key="user_login" icon="fas fa-file-pdf"]title text[/um_profile_info]
+
+Example: https://imgur.com/a/tBCYTjb
 #### country_flag
 [um_profile_info type="country_flag" meta_key="country" user_id="" height="75px"  text_meta_key="country"]title text[/um_profile_info]
 
