@@ -62,7 +62,7 @@ Title text for type="image". Link text for  type="profile_link", type="url", typ
 ### icon
 icons available at Font Awesome: https://docs.fontawesome.com/web/add-icons/how-to
 ### email placeholders
-Placeholders are updated for text contents  https://docs.ultimatemember.com/article/1340-placeholders-for-email-templates
+Placeholders are updated for custom text contents  https://docs.ultimatemember.com/article/1340-placeholders-for-email-templates
 ### Lipis Flag Icons Library
 1. Demo https://flagicons.lipis.dev/
 2. Releases https://github.com/lipis/flag-icons/releases
