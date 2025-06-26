@@ -33,7 +33,7 @@ You can update the setting anytime when a newer library version is available by 
 #### email
 [um_profile_info type="email" meta_key="user_email" user_id="" text_meta_key="user_login" icon="fas fa-at"]email subject[/um_profile_info]
 #### email_button
-[um_profile_info type="email" meta_key="user_email" user_id="" text_meta_key="user_login" icon="fas fa-at"]email subject[/um_profile_info]
+[um_profile_info type="email_button" meta_key="user_email" user_id="" text_meta_key="user_login" icon="fas fa-at"]email subject[/um_profile_info]
 #### current_user
 [um_profile_info type="email" meta_key="user_email" user_id="" text_meta_key="user_login" icon="fas fa-at"]email [um_profile_info type="current_user" text="from {display-name}][/um_profile_info]
 #### file
